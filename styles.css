@@ -1,7 +1,0 @@
-/* Eco Pacific Painting — Design System global stylesheet
-   List of imports only — see each file for the tokens it declares. */
-
-@import "tokens/colors.css";
-@import "tokens/typography.css";
-@import "tokens/spacing.css";
-@import "tokens/effects.css";
