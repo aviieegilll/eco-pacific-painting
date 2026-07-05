@@ -1,0 +1,40 @@
+/* Eco Pacific Painting — Typography tokens
+   Font: Plus Jakarta Sans (loaded via next/font/google in production —
+   this is the ONE font family used for everything: display, body, UI, forms).
+   No serif / mono pairing exists in the source; do not introduce one. */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  /* ---- Type scale — exact values from tailwind.config.ts fontSize.extend ---- */
+  --text-display-xl: 4rem;      /* 64px, line-height 1.08, tracking -0.02em, weight 700 */
+  --text-display-lg: 3.25rem;   /* 52px, line-height 1.1,  tracking -0.02em, weight 700 */
+  --text-display-md: 2.5rem;    /* 40px, line-height 1.15, tracking -0.015em, weight 700 */
+  --text-h2: 2rem;              /* 32px, line-height 1.2, tracking -0.01em, weight 600 */
+  --text-h3: 1.5rem;            /* 24px, line-height 1.3, weight 600 */
+  --text-lg: 1.125rem;          /* 18px — subtitles/lede paragraphs */
+  --text-body: 1rem;            /* 16px — default body */
+  --text-sm: 0.9375rem;         /* 15px — buttons, nav links (text-[15px]) */
+  --text-xs: 0.8125rem;         /* 13px — eyebrows, meta, uppercase labels */
+  --text-2xs: 0.6875rem;        /* 11px — micro labels e.g. "PAINTING" wordmark */
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.2;
+  --leading-normal: 1.3;
+  --leading-relaxed: 1.6;
+
+  --tracking-tightest: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.2em;   /* nav wordmark "PAINTING" */
+  --tracking-widest: 0.25em; /* footer wordmark */
+  --tracking-eyebrow: 0.05em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+}

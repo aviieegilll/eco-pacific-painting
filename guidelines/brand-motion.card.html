@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Motion — Signature Ease" subtitle="cubic-bezier(0.22,1,0.36,1) used for every transition sitewide" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:20px;font-family:var(--font-sans);background:#fff;}
+.track{position:relative;height:40px;background:var(--color-mist);border-radius:20px;overflow:hidden;margin-bottom:14px;}
+.dot{position:absolute;top:4px;left:4px;width:32px;height:32px;border-radius:50%;background:var(--primary-500);animation:go 2.4s var(--ease-premium) infinite;}
+@keyframes go{0%{left:4px}50%{left:calc(100% - 36px)}100%{left:4px}}
+p{font-size:12px;color:var(--navy-500);margin:0;}
+</style>
+</head>
+<body>
+<div class="track"><div class="dot"></div></div>
+<p>--ease-premium: cubic-bezier(0.22, 1, 0.36, 1) · reveal 750ms · hover 400ms · loader wipe 1100ms</p>
+</body>
+</html>
