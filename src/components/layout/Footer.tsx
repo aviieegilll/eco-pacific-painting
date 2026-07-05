@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Facebook, Instagram, Star } from "lucide-react";
 import { SITE, NAV_LINKS } from "@/lib/constants";
 import { SERVICES } from "@/data/services";
@@ -39,9 +40,9 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="hover:text-primary-400 transition-colors">
+                  <Link href={l.href} className="hover:text-primary-400 transition-colors">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -54,9 +55,9 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {SERVICES.slice(0, 6).map((s) => (
                 <li key={s.title}>
-                  <a href="#services" className="hover:text-primary-400 transition-colors">
+                  <Link href="/services" className="hover:text-primary-400 transition-colors">
                     {s.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

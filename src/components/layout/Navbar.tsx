@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/constants";
@@ -10,6 +12,7 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -25,6 +28,11 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  // Close the mobile menu automatically whenever the route changes.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <header
       className={cn(
@@ -33,31 +41,40 @@ export default function Navbar() {
       )}
     >
       <nav className="container max-w-content flex items-center justify-between">
-        <a href="#home" className="flex flex-col leading-none group">
-          <span
-            className={cn(
-              "text-lg font-extrabold tracking-tight transition-colors",
-              scrolled ? "text-navy-900" : "text-navy-900"
-            )}
-          >
+        <Link href="/" className="flex flex-col leading-none group">
+          <span className="text-lg font-extrabold tracking-tight text-navy-900">
             ECO PACIFIC
           </span>
           <span className="text-[11px] font-medium tracking-[0.2em] text-primary-500">
             PAINTING
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden lg:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-[15px] font-medium text-navy-700 hover:text-primary-500 transition-colors duration-300"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "relative text-[15px] font-medium transition-colors duration-300",
+                    isActive ? "text-primary-500" : "text-navy-700 hover:text-primary-500"
+                  )}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-indicator"
+                      className="absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full bg-primary-500"
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -68,13 +85,7 @@ export default function Navbar() {
             <Phone className="w-4 h-4" />
             {SITE.phoneDisplay}
           </a>
-          <PaintDripButton
-            variant="primary"
-            className="!py-2.5 !px-5 text-sm"
-            onClick={() =>
-              document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
+          <PaintDripButton variant="primary" className="!py-2.5 !px-5 text-sm" href="/quote">
             Book Appointment
           </PaintDripButton>
         </div>
@@ -120,24 +131,30 @@ export default function Navbar() {
                 </button>
               </div>
               <ul className="flex flex-col gap-1">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block py-3.5 text-lg font-medium text-navy-800 border-b border-navy-50"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive =
+                    link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "block py-3.5 text-lg font-medium border-b border-navy-50",
+                          isActive ? "text-primary-500" : "text-navy-800"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
               <div className="mt-8 flex flex-col gap-3">
                 <a href={`tel:${SITE.phoneRaw}`} className="btn-outline-navy w-full">
                   <Phone className="w-4 h-4" />
                   {SITE.phoneDisplay}
                 </a>
-                <PaintDripButton variant="primary" className="w-full" href="#quote">
+                <PaintDripButton variant="primary" className="w-full" href="/quote">
                   Book Appointment
                 </PaintDripButton>
               </div>

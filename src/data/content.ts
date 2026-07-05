@@ -83,6 +83,27 @@ export const REVIEWS: ReviewItem[] = [
     quote:
       "Very professional and detail-oriented. Our office looks brand new. They worked around our business hours with zero disruption to our team.",
   },
+  {
+    name: "Michael C.",
+    location: "Richmond, BC",
+    rating: 5,
+    quote:
+      "Our deck looks better than the day it was built. The crew showed up on time every day and left the site spotless. Genuinely impressed with the craftsmanship.",
+  },
+  {
+    name: "Sarah L.",
+    location: "Coquitlam, BC",
+    rating: 5,
+    quote:
+      "From the initial quote to the final coat, everything was transparent and professional. Our kitchen cabinets look like a brand-new custom install.",
+  },
+  {
+    name: "David & Ellen W.",
+    location: "Surrey, BC",
+    rating: 5,
+    quote:
+      "We've used Eco Pacific for both our exterior and interior. Consistent quality, punctual crews, and they always clean up perfectly after each day.",
+  },
 ];
 
 export interface ProcessStep {

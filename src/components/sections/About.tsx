@@ -4,7 +4,13 @@ import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import PaintDripButton from "@/components/ui/PaintDripButton";
 import { ABOUT_BENEFITS } from "@/data/services";
 
-export default function About() {
+interface AboutProps {
+  variant?: "preview" | "full";
+}
+
+export default function About({ variant = "preview" }: AboutProps) {
+  const isPreview = variant === "preview";
+
   return (
     <section id="about" className="section bg-white">
       <div className="container max-w-content grid lg:grid-cols-2 gap-14 items-center">
@@ -31,6 +37,16 @@ export default function About() {
             project, every time.
           </p>
 
+          {!isPreview && (
+            <p className="mt-4 text-navy-500 leading-relaxed text-lg">
+              What started as a small residential crew has grown into a
+              full-service painting company trusted by homeowners, property
+              managers and businesses alike — without ever losing the
+              hands-on, detail-first approach we started with. Every project,
+              large or small, gets the same care.
+            </p>
+          )}
+
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3">
             {ABOUT_BENEFITS.map((item) => (
               <li key={item} className="flex items-center gap-2.5">
@@ -41,9 +57,15 @@ export default function About() {
           </ul>
 
           <div className="mt-9">
-            <PaintDripButton variant="primary" href="#about">
-              Learn More About Us
-            </PaintDripButton>
+            {isPreview ? (
+              <PaintDripButton variant="primary" href="/about">
+                Learn More About Us
+              </PaintDripButton>
+            ) : (
+              <PaintDripButton variant="primary" href="/quote">
+                Get Free Quote
+              </PaintDripButton>
+            )}
           </div>
         </Reveal>
       </div>

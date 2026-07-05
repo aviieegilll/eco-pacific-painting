@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
@@ -18,14 +19,19 @@ const CATEGORIES: ("All" | ProjectCategory)[] = [
   "Decks",
 ];
 
-export default function Projects() {
+interface ProjectsProps {
+  variant?: "preview" | "full";
+}
+
+export default function Projects({ variant = "full" }: ProjectsProps) {
+  const isPreview = variant === "preview";
   const [filter, setFilter] = useState<"All" | ProjectCategory>("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filtered = useMemo(
-    () => (filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter)),
-    [filter]
-  );
+  const filtered = useMemo(() => {
+    const base = filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
+    return isPreview ? base.slice(0, 3) : base;
+  }, [filter, isPreview]);
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const next = useCallback(
@@ -68,21 +74,23 @@ export default function Projects() {
         />
         <p className="sr-only">Recent painting projects gallery</p>
 
-        <Reveal delay={0.1} className="mt-10 flex flex-wrap justify-center gap-2.5">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === cat
-                  ? "bg-primary-500 text-white shadow-glow"
-                  : "bg-white/5 text-white/70 hover:bg-white/10"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </Reveal>
+        {!isPreview && (
+          <Reveal delay={0.1} className="mt-10 flex flex-wrap justify-center gap-2.5">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  filter === cat
+                    ? "bg-primary-500 text-white shadow-glow"
+                    : "bg-white/5 text-white/70 hover:bg-white/10"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </Reveal>
+        )}
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((project, i) => (
@@ -106,6 +114,18 @@ export default function Projects() {
             </Reveal>
           ))}
         </div>
+
+        {isPreview && (
+          <Reveal delay={0.2} className="mt-10 flex justify-center">
+            <Link
+              href="/projects"
+              className="btn text-white bg-white/10 hover:bg-white/15 border border-white/15 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              View All Projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Reveal>
+        )}
       </div>
 
       <AnimatePresence>

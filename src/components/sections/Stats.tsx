@@ -54,11 +54,11 @@ function StatCard({
   );
 }
 
-export default function Stats() {
+export default function Stats({ overlapHero = false }: { overlapHero?: boolean }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.4 });
 
   return (
-    <section className="relative -mt-10 md:-mt-16 z-10">
+    <section className={overlapHero ? "relative -mt-10 md:-mt-16 z-10" : "section"}>
       <div className="container max-w-content">
         <Reveal>
           <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">

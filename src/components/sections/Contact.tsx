@@ -1,6 +1,5 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import SectionHeading from "@/components/ui/SectionHeading";
 import { SITE } from "@/lib/constants";
 
 const contactCards = [
@@ -14,9 +13,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section bg-mist">
       <div className="container max-w-content">
-        <SectionHeading eyebrow="Contact Us" title="Let's Start Your Project" />
-
-        <div className="mt-14 grid lg:grid-cols-5 gap-10">
+        <div className="grid lg:grid-cols-5 gap-10">
           <Reveal className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
             {contactCards.map((card) =>
               card.href ? (

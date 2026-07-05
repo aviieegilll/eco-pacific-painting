@@ -70,9 +70,7 @@ export default function Hero() {
             <PaintDripButton
               variant="primary"
               icon={<ArrowRight className="w-4 h-4" />}
-              onClick={() =>
-                document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" })
-              }
+              href="/quote"
             >
               Get Free Quote
             </PaintDripButton>
@@ -90,9 +88,12 @@ export default function Hero() {
             {badges.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex flex-col items-start gap-2 rounded-2xl border border-navy-100/60 bg-white/70 backdrop-blur-sm p-4 shadow-soft"
+                className="group cursor-pointer flex flex-col items-start gap-2 rounded-2xl border border-navy-100/60 hover:border-primary-300/70 bg-white/70 backdrop-blur-sm p-4 shadow-soft hover:shadow-lift transition-all duration-300 ease-premium will-change-transform hover:-translate-y-2.5 hover:scale-[1.03] hover:ring-1 hover:ring-primary-200/50"
               >
-                <Icon className="w-5 h-5 text-primary-500" strokeWidth={1.75} />
+                <Icon
+                  className="w-5 h-5 text-primary-500 transition-transform duration-300 ease-premium group-hover:scale-110 group-hover:-rotate-6"
+                  strokeWidth={1.75}
+                />
                 <span className="text-xs font-medium text-navy-700 leading-snug">
                   {label}
                 </span>

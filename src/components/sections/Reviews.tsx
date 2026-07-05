@@ -3,7 +3,13 @@ import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { REVIEWS } from "@/data/content";
 
-export default function Reviews() {
+interface ReviewsProps {
+  limit?: number;
+}
+
+export default function Reviews({ limit }: ReviewsProps) {
+  const items = limit ? REVIEWS.slice(0, limit) : REVIEWS;
+
   return (
     <section id="reviews" className="section bg-white">
       <div className="container max-w-content">
@@ -14,7 +20,7 @@ export default function Reviews() {
         />
 
         <div className="mt-14 grid md:grid-cols-3 gap-6">
-          {REVIEWS.map((review, i) => (
+          {items.map((review, i) => (
             <Reveal key={review.name} delay={i * 0.1}>
               <div className="surface-card p-8 h-full flex flex-col">
                 <Quote className="w-8 h-8 text-primary-200" fill="currentColor" strokeWidth={0} />

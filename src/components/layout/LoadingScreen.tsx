@@ -38,12 +38,6 @@ export default function LoadingScreen() {
                   ECO PACIFIC
                 </span>
               </motion.div>
-              <motion.span
-                initial={{ x: "-10%" }}
-                animate={{ x: "110%" }}
-                transition={{ duration: 1.1, delay: 0.3, ease: [0.65, 0, 0.35, 1] }}
-                className="absolute top-0 h-full w-3 bg-gradient-to-r from-primary-300 via-primary-500 to-primary-300 rounded-full blur-[1px]"
-              />
             </div>
             <motion.span
               initial={{ opacity: 0, y: 8 }}

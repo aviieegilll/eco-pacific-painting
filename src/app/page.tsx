@@ -1,6 +1,3 @@
-import LoadingScreen from "@/components/layout/LoadingScreen";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
 import About from "@/components/sections/About";
@@ -9,33 +6,20 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Projects from "@/components/sections/Projects";
 import BeforeAfter from "@/components/sections/BeforeAfter";
 import Reviews from "@/components/sections/Reviews";
-import Process from "@/components/sections/Process";
-import QuoteForm from "@/components/sections/QuoteForm";
-import Appointment from "@/components/sections/Appointment";
-import ServiceArea from "@/components/sections/ServiceArea";
-import Contact from "@/components/sections/Contact";
+import CtaBanner from "@/components/sections/CtaBanner";
 
 export default function HomePage() {
   return (
-    <>
-      <LoadingScreen />
-      <Navbar />
-      <main id="main-content">
-        <Hero />
-        <Stats />
-        <About />
-        <Services />
-        <WhyChooseUs />
-        <Projects />
-        <BeforeAfter />
-        <Reviews />
-        <Process />
-        <QuoteForm />
-        <Appointment />
-        <ServiceArea />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <main id="main-content">
+      <Hero />
+      <Stats overlapHero />
+      <About variant="preview" />
+      <Services variant="preview" />
+      <WhyChooseUs />
+      <Projects variant="preview" />
+      <BeforeAfter />
+      <Reviews limit={3} />
+      <CtaBanner />
+    </main>
   );
 }

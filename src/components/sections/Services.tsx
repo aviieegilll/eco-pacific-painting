@@ -3,7 +3,13 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import PaintDripButton from "@/components/ui/PaintDripButton";
 import { SERVICES } from "@/data/services";
 
-export default function Services() {
+interface ServicesProps {
+  variant?: "preview" | "full";
+}
+
+export default function Services({ variant = "preview" }: ServicesProps) {
+  const isPreview = variant === "preview";
+
   return (
     <section id="services" className="section bg-mist">
       <div className="container max-w-content">
@@ -33,9 +39,15 @@ export default function Services() {
         </div>
 
         <Reveal delay={0.2} className="mt-12 flex justify-center">
-          <PaintDripButton variant="primary" href="#projects">
-            View All Services
-          </PaintDripButton>
+          {isPreview ? (
+            <PaintDripButton variant="primary" href="/services">
+              View All Services
+            </PaintDripButton>
+          ) : (
+            <PaintDripButton variant="primary" href="/quote">
+              Get Free Quote
+            </PaintDripButton>
+          )}
         </Reveal>
       </div>
     </section>
